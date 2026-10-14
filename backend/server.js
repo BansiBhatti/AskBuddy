@@ -50,6 +50,7 @@ app.post("/generate", async (req, res) => {
     }
 });
 
-app.listen(3004, () => {
-    console.log("Server running on port 3004");
-});
+const PORT = process.env.PORT || 3004;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+}); 
