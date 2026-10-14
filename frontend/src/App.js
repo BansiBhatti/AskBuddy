@@ -3,6 +3,9 @@ import axios from "axios";
 import { ArrowRight } from "lucide-react";
 
 export default function App() {
+
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3004";
+
   const [prompt, setPrompt] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -33,7 +36,7 @@ export default function App() {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:3004/generate", { prompt: text });
+     const res = await axios.post(`${API_URL}/generate`, { prompt: text });
       setMessages((prev) => [...prev, { role: "ai", text: res.data.text }]);
     } catch (err) {
       setMessages((prev) => [
